@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-webapp
+
+spec:
+  selector:
+    app: webapp
+    release: 0-5
+  ports:
+    - protocol: TCP
+      port: 80
+      #targetPort: 90 this will cause failure, becuase target port is on container  , but our container runs on 80
+      nodePort: 30080 # should be greater than 30k, this is the port via which browser communicates
+     
+
+  type: NodePort
